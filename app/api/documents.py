@@ -1,7 +1,8 @@
 from celery import Celery
+from app.core.config import settings
 
 Celery = Celery(
     'worker',
-    broker='redis://locahost:6379/0',
-    backend='redis://locahost:6379/0'
+    broker=settings.REDIS_URL,
+    backend=settings.REDIS_URL
 )
