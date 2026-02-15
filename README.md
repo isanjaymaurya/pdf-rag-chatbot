@@ -26,3 +26,8 @@ rag-chatbot/
 ├── README.md
 └── .env
 
+# celery
+
+```
+python -m celery -A app.worker worker --loglevel=info
+```

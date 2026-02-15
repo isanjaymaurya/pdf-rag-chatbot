@@ -1,14 +1,10 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 from functools import lru_cache
 
 
 class Settings(BaseSettings):
     APP_NAME: str = "PDF RAG Chatbot"
     DEBUG: bool = True
-
-    # openai
-    OPENAI_API_KEY: str
-    MODEL_NAME: str
 
     # redis / celery
     REDIS_URL: str

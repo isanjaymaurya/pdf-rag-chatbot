@@ -1,8 +1,11 @@
-from celery import Celery
-from app.core.config import settings
+from fastapi import APIRouter, UploadFile
+from app.core.celery_app import process_document_task
 
-Celery = Celery(
-    'worker',
-    broker=settings.REDIS_URL,
-    backend=settings.REDIS_URL
-)
+router = APIRouter()
+
+@router.post("/upload")
+async def upload_document(file: UploadFile):
+    task = process_document_task.delay(file.filename)
+    return {"task_id": task.id}
+
+
